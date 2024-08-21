@@ -50,7 +50,13 @@ fun leerSueldo(): Double{
             sueldo = numero.toDouble()
             //En caso de ser null, no se ha ingrasado un valor
             if (sueldo != null){
-                return sueldo
+                if (sueldo >= 0) {
+                    return sueldo
+                }
+                else{
+                     //En caso de que el numero esté por fuera del limite
+                    println("--Debe ingresar una sueldo mayor a 0--")
+                }
             }
             else{
                 //En caso de no haber ingresado un numero
