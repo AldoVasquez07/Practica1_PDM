@@ -20,17 +20,46 @@ fun leerPuntuacion(): Int{
                 }
                 else{
                     //En caso de que el numero esté por fuera del limite
-                    print("Debe ingresar una puntuacion desde 0 a 10")
+                    println("--Debe ingresar una puntuacion desde 0 a 10--")
                 }
             }
             else{
                 //En caso de no haber ingresado un numero
-                println("Debe Igresar un numero")
+                println("--Debe Igresar un numero--")
             }
         }
         catch(e: NumberFormatException){
             //Caso de no haber ingresado un valor numerico entero
-            println("Debe Ingresar un numero valido")
+            println("--Debe Ingresar un numero valido--")
+        }
+    }
+}
+
+fun leerSueldo(): Double{
+    //Se crea una variable que acepta nulos, por el caso de la conversión
+    var sueldo: Double?
+    
+    while(true){
+        //Leemos la puntuacion de manera explicita
+        print("Ingrese su Sueldo: ")
+        var numero = readln()
+        
+        // Generacion de try-catch en caso de una mala conversion
+        try{
+            //Realizando la conversion a Double
+            sueldo = numero.toDouble()
+            //En caso de ser null, no se ha ingrasado un valor
+            if (sueldo != null){
+                return sueldo
+            }
+            else{
+                //En caso de no haber ingresado un numero
+                println("--Debe Igresar un numero--")
+            }
+        }
+        catch(e: NumberFormatException){
+            //Caso de no haber ingresado un valor numerico
+            println("--Debe Ingresar un numero valido--")
         }
     }
 }
@@ -41,10 +70,9 @@ fun main() {
     var puntuacion = leerPuntuacion()
     
     //Se está leyendo el sueldo de manera explicita
-    print("Ingrese su Sueldo: ")
-    var sueldo = readln().toDouble()
+    var sueldo = leerSueldo()
     
-    // Haciendo el tipo de puntuacion obtenida, segun el valor ingresado
+    // Haciendo el switch del tipo de puntuacion obtenida, segun el valor ingresado
     var tipo_puntuacion = when(puntuacion){
         in 0..3 -> "Inaceptable"
         in 4..6 -> "Aceptable"
@@ -52,7 +80,6 @@ fun main() {
         else -> "error"
     }
     
-    println(puntuacion)
     // Mostrando el tipo de puntuacion obtenida
     println("\nNivel de rendimiento: $tipo_puntuacion")
     // Realizando calculo del Dinero Recibido
